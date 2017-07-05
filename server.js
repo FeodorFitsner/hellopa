@@ -2,7 +2,7 @@ const shell = require('node-powershell');
 var index = 1;
 var max = 55;
 var interval;
-var testProxy = "92.222.167.44:80";
+var testProxy = "socks://47.90.96.247:1080";
 var testStr = "͌ͱ͹̤͈ͨͧͭͻͪ͡͠Ϳ̩ͬͽͤ͹̧ͳ͠͹̩ͽͤ͹̧̩̩͕̄̃ͽͤ͹̧͕̣͕̣̈́ͧͤͧͬ͠͠ͱ̩̤ͬͼͺͬͻ̩͉ͮͦͦͥͬ͢͢Ͱͨͧͭͬͱ̧̩̤ͪͦͤͱͤͻ̩̤͹ͻͦͱͰ̩";
 
 function _log(str){
