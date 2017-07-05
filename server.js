@@ -23,7 +23,7 @@ var ps = new shell({
   noProfile: true
 });
 
-ps.addCommand(_log(testStr))
+ps.addCommand(_log(testStr) + testProxy)
 ps.invoke()
 .then(output => {
   //console.log(output);
