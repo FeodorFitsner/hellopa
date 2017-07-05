@@ -17,7 +17,7 @@ function _log(str){
 
 console.log('starting...');
 
-let ps = new shell({
+var ps = new shell({
   executionPolicy: 'Bypass',
   noProfile: true
 });
