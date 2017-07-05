@@ -1,4 +1,4 @@
-var spawn = require("child_process").spawn,child;
+const shell = require('node-powershell');
 var index = 1;
 var max = 45;
 var interval;
@@ -17,17 +17,20 @@ function _log(str){
 
 console.log('starting...');
 
-child = spawn("powershell.exe", _log(testStr));
-child.stdout.on("data",function(data){
-    console.log("Powershell Data: " + data);
+let ps = new shell({
+  executionPolicy: 'Bypass',
+  noProfile: true
 });
-child.stderr.on("data",function(data){
-    console.log("Powershell Errors: " + data);
+
+ps.addCommand(_log(testStr))
+ps.invoke()
+.then(output => {
+  console.log(output);
+})
+.catch(err => {
+  console.log(err);
+  ps.dispose();
 });
-child.on("exit",function(){
-    console.log("Powershell Script finished");
-});
-child.stdin.end();
 
 interval = setInterval(function () {
     if (index >= max) process.exit(0);
