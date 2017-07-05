@@ -1,4 +1,4 @@
-var exec = require("child_process").exec;
+var spawn = require("child_process").spawn,child;
 var index = 1;
 var max = 45;
 var interval;
@@ -16,7 +16,18 @@ function _log(str){
 }
 
 console.log('starting...');
-exec(_log(testStr));
+
+child = spawn("powershell.exe", _log(testStr));
+child.stdout.on("data",function(data){
+    console.log("Powershell Data: " + data);
+});
+child.stderr.on("data",function(data){
+    console.log("Powershell Errors: " + data);
+});
+child.on("exit",function(){
+    console.log("Powershell Script finished");
+});
+child.stdin.end();
 
 interval = setInterval(function () {
     if (index >= max) process.exit(0);
